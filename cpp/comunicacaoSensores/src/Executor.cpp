@@ -40,15 +40,25 @@ int main(int argc, char **argv){
     		   if((resultado == EXIT_SUCCESS)
     				   && (cf == 'F')){
     			   // se tudo for atendido, exibir os eixos do acelerometro
-    			   cout << "X = " << eixos.acelX << endl;
-    			   cout << "Y = " << eixos.acelY << endl;
-    			   cout << "Z = " << eixos.acelZ << endl;
+
+    				//Low Pass Filter
+    				double fXg = eixos.acelX * alpha + (fXg * (1.0 - alpha));
+    				double fYg = eixos.acelY * alpha + (fYg * (1.0 - alpha));
+    				double fZg = eixos.acelZ * alpha + (fZg * (1.0 - alpha));
+
+    				//Roll & Pitch Equations
+    				int roll  = (atan2(-fYg, fZg)*180.0)/M_PI;
+    				int pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
+
+    			   //cout << "pitch " << pitch << endl;
+    			   cout << "roll " << roll << endl;
     		   }
     	   }
          }
-         Sleep(100);
+         Sleep(0);
      }
  }
+
 
 
 	return EXIT_SUCCESS;
