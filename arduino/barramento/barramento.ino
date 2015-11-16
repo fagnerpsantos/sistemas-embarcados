@@ -22,29 +22,36 @@ ADXL345 acc;
 
 void setup()
 {
+  Serial.begin(9600);
 	acc.begin();
-	Serial.begin(9600);
-	delay(100);
+	
+	
+}
+
+struct Eixos{
+  int acelX, acelY, acelZ;
+};
+
+Eixos eixos;
+
+void enviarEixos() {
+  int tam = sizeof(eixos);
+  char buff[tam];
+
+  memcpy(&buff, &eixos, tam);
+  Serial.write('I');
+  Serial.write((uint8_t*)&buff, tam);
+  Serial.write('F');
+  
 }
 
 
 void loop()
 {
-	double pitch, roll, Xg, Yg, Zg;
-	acc.read(&Xg, &Yg, &Zg);
+	acc.read(&eixos.acelX, &eixos.acelY, &eixos.acelZ);
+        enviarEixos();
 
-	//Low Pass Filter
-	fXg = Xg * alpha + (fXg * (1.0 - alpha));
-	fYg = Yg * alpha + (fYg * (1.0 - alpha));
-	fZg = Zg * alpha + (fZg * (1.0 - alpha));
 
-	//Roll & Pitch Equations
-	roll  = (atan2(-fYg, fZg)*180.0)/M_PI;
-	pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
-
-	Serial.print(pitch);
-	Serial.print(":");
-	Serial.println(roll);
-
-	delay(500);
+	delay(50);
 }
+
