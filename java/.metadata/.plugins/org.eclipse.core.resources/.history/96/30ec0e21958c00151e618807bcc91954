@@ -1,7 +1,0 @@
-package br.edu.ifba.embarcados.graphs;
-
-import javax.swing.JComponent;
-
-public class Painel extends JComponent {
-
-}

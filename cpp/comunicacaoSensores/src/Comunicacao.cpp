@@ -2,7 +2,7 @@
  * Comunicacao.cpp
  *
  *  Created on: 08/10/2015
- *      Author: fagnerpsantos
+ *      Author: Fagner Pinheiro e Ana Paula
  */
 #include "Comunicacao.h"
 
@@ -12,6 +12,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #endif
+
+// Essa classe faz toda a parte de comunicação com o Arduino (Inicia, lê e finaliza)
 
 Comunicacao::Comunicacao(char* porta){
 	hPorta = 0;

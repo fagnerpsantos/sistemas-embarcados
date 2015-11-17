@@ -1,0 +1,48 @@
+package br.edu.ifba.bsi.embarcados;
+
+import java.awt.GridLayout;
+
+import javax.swing.JDialog;
+
+import br.edu.ifba.bsi.embarcados.javaapp.asincexec.IListenerAcelerometro;
+
+public class Janela extends JDialog {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Panel tela = new Panel();
+	
+	
+	
+	public Dialog(){
+		super(null, java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setSize(900, 500);
+		setResizable(false);
+		setTitle("Régua de nivelamento");
+		
+	}
+	
+	public void init(){
+		setLocationRelativeTo(null);
+		setLayout(new GridLayout(1, 1, 0, 0));
+		
+		
+//		tela = new Panel();
+		add(tela);
+		setVisible(true);
+		setModal(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		new Janela();
+	}
+	
+	public IListenerAcelerometro getListener() {
+		return tela;
+	}
+
+}

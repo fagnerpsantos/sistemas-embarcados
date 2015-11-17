@@ -1,0 +1,33 @@
+package br.edu.ifba.embarcados.javaapp;
+
+import br.edu.ifba.embarcados.javaapp.asincexec.AsincExec;
+import br.edu.ifba.embarcados.javaapp.graphs.Dialog;
+import br.edu.ifba.embarcados.javaapp.graphs.Painel;
+
+public class Executor {
+
+	public static void main(String[] args) throws InterruptedException {
+		ListenerAcelerometro listener =
+				new ListenerAcelerometro();
+		
+		//Acessar acelerômetro
+		
+		AsincExec asinc = 
+				new AsincExec("/dev/ttyUSB0");
+		
+		Dialog dialog = new Dialog();
+		
+		asinc.addListener(listener);
+		
+		Thread t = new Thread(asinc);
+		t.start();
+		
+		for(int i=0; i<10; i++){
+			Thread.sleep(1000);
+		}
+		asinc.setContinuar(true);
+		t.join();	
+
+	}
+
+}
