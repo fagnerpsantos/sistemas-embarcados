@@ -11,6 +11,7 @@ public interface IComunicacaoSensores
 	public int getAcelY();
 	public int getAcelZ();
 	public int finalizar();
+	public int grausAcel();
 	
 	
 

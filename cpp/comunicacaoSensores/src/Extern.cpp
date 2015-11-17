@@ -9,6 +9,9 @@
 #include <Comunicacao.h>
 #include "Extern.h"
 #include <cstdlib>
+#include "math.h"
+
+const float alpha = 0.5;
 
 struct Eixos {
 	short acelX, acelY, acelZ;
@@ -57,3 +60,14 @@ int finalizar(){
 	return com.finalizar();
 }
 
+int grausAcel(){
+	double fXg = eixos.acelX * alpha + (fXg * (1.0 - alpha));
+	double fYg = eixos.acelY * alpha + (fYg * (1.0 - alpha));
+	double fZg = eixos.acelZ * alpha + (fZg * (1.0 - alpha));
+
+	//Roll & Pitch Equations
+	int roll  = (atan2(-fYg, fZg)*180.0)/M_PI;
+	//int pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
+
+	return roll;
+}

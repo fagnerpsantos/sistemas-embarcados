@@ -13,10 +13,10 @@ public class FabricaConectores {
 		
 		if(Platform.isWindows()){
 			conector = (IComunicacaoSensores)Native.loadLibrary(
-					"comunicacaosensores.dll", IComunicacaoSensores.class);
+					"comunicacaoSensores.dll", IComunicacaoSensores.class);
 		} else if(Platform.isLinux()){
 			conector = (IComunicacaoSensores)Native.loadLibrary(
-					"comunicacaosensores.so", IComunicacaoSensores.class);
+					"comunicacaoSensores.so", IComunicacaoSensores.class);
 			
 		}
 		

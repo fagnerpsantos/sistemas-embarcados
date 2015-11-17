@@ -1,0 +1,63 @@
+package br.edu.ifba.embarcados.graphs;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+public class Painel extends JComponent {
+	
+    public Painel() {
+    	repaint();
+    }
+    
+    protected void paintComponent(Graphics g) {
+       
+		Graphics2D g2d = (Graphics2D) g.create();
+		
+		//retangulo
+		g2d.drawRect(20, 20, 400, 400);
+		
+		//diagonais
+		g2d.drawLine(20, 20, 420, 420);
+		g2d.drawLine(20, 420, 420, 20);
+		
+		//vert
+		g2d.drawLine(220, 20, 220, 420);
+		//horizontal
+		g2d.drawLine(20, 220, 420, 220);
+		
+		
+		g2d.drawRect(450, 20, 400, 400);
+		
+		//diagonais
+		g2d.drawLine(450, 20, 850, 420);
+		g2d.drawLine(450, 420, 850, 20);
+	
+		//vert
+		g2d.drawLine(650, 20, 650, 420);
+		//horizontal
+		g2d.drawLine(450, 220, 850, 220);
+    }
+    
+    private static void createAndShowGUI() {    
+        JFrame f = new JFrame("Rotation");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(300, 300);
+        f.add(new Painel());
+        f.setVisible(true);
+    }
+    
+    public static void main(String args[]) {
+        Runnable doCreateAndShowGUI = new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        };
+        SwingUtilities.invokeLater(doCreateAndShowGUI);
+    }
+
+}

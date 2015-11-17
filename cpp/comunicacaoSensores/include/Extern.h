@@ -18,6 +18,7 @@ int getAcelX();
 int getAcelY();
 int getAcelZ();
 int finalizar();
+int grausAcel();
 
 #ifdef __cplusplus
 }

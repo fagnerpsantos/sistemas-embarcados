@@ -11,8 +11,11 @@
 #include "Comunicacao.h"
 
 #include "iostream"
+#include "math.h"
 
 using namespace std;
+
+const float alpha = 0.5;
 
 struct Eixos {
   short acelX, acelY, acelZ;
@@ -26,6 +29,8 @@ int main(int argc, char **argv){
     if (com.inciar() == EXIT_SUCCESS){
        char ci, cf;
        Eixos eixos;
+
+
 
        // enquanto estiver executando...
        while (true){
@@ -60,9 +65,7 @@ int main(int argc, char **argv){
  }
 
 
-
 	return EXIT_SUCCESS;
 }
-
 
 
