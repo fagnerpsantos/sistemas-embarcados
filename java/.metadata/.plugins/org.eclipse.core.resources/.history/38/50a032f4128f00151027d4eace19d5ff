@@ -25,12 +25,12 @@ public class Dialog extends JDialog {
 	public void init(){
 		
 		add(tela);
-
+<<<<<<< HEAD
 		
-
+=======
                 setTitle("Régua de Nivelamento");
 	
-
+>>>>>>> 849e4fd9d81c263008c791d257a9c2ecbb802f95
 		setVisible(true);
 		setModal(true);
 		

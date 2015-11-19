@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Essa classe é responsável por criar o retângulo, foi utilizada a biblioteca
  * graphcs2D do próprio Java
  */
@@ -70,7 +70,7 @@ public class Retangulo extends JPanel implements IListenerAcelerometro {
         g2d.rotate(Math.toRadians(-angulo), 75, 75);
         g2d.setColor(Color.BLACK);
         g2d.fillRect(170, 170, 150, 150);
-        g2d.drawString("Inclinação "+angulo+"º", 50, 150);
+        g2d.drawString("Inclinação "+angulo+"º", 55, 150);
         
 
         // done with g2d, dispose it
