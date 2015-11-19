@@ -5,7 +5,9 @@
 <fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.graphs.Painel"/>
 <fullyQualifiedTypeName name="javax.swing.JDialog"/>
 <fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.graphs.Dialog"/>
-<fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro"/>
-<fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
+<fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro"/>
+<fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.graphs.Graus"/>
+<fullyQualifiedTypeName name="br.edu.ifba.embarcados.javaapp.ListenerAcelerometro"/>
+<fullyQualifiedTypeName name="java.awt.GridLayout"/>
 </qualifiedTypeNameHistroy>

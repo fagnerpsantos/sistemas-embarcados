@@ -23,7 +23,7 @@ public class Retangulo extends JPanel implements IListenerAcelerometro {
     	repaint();
     }
     
-    public static int angulo = 0;
+    public int angulo = 0;
     
     /*
      * Essa função fica pegando os dados do acelerômetro e manipulando o 
@@ -32,6 +32,7 @@ public class Retangulo extends JPanel implements IListenerAcelerometro {
 	@Override
 	public void notificarMovimento(int x) {
 		angulo = x;
+		
 		
 		removeAll();
 		updateUI();
@@ -54,7 +55,7 @@ public class Retangulo extends JPanel implements IListenerAcelerometro {
         
         // base rectangle
         g2d.setColor(Color.GRAY.brighter());
-        g2d.fillRect(50, 50, 150, 150);
+        g2d.fillRect(170, 170, 150, 150);
         
         // rotated 45 degrees around origin
  /*       g2d.rotate(Math.toRadians(45));
@@ -68,7 +69,8 @@ public class Retangulo extends JPanel implements IListenerAcelerometro {
         g2d = (Graphics2D)g.create();
         g2d.rotate(Math.toRadians(-angulo), 75, 75);
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(50, 50, 150, 150);
+        g2d.fillRect(170, 170, 150, 150);
+        g2d.drawString("Inclinação "+angulo+"º", 50, 150);
         
 
         // done with g2d, dispose it

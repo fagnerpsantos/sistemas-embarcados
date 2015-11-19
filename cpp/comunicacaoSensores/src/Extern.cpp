@@ -63,14 +63,23 @@ int finalizar(){
 // Essa é a função principal. Nela, enviamos os dados que recebemos do acelerômetro em forma de graus.
 // Utilizamos o arctang para esse cálculo
 
-int grausAcel(){
+int grausAcelY(){
 	double fXg = eixos.acelX * alpha + (fXg * (1.0 - alpha));
 	double fYg = eixos.acelY * alpha + (fYg * (1.0 - alpha));
 	double fZg = eixos.acelZ * alpha + (fZg * (1.0 - alpha));
 
 	//Roll & Pitch Equations
 	int roll  = (atan2(-fYg, fZg)*180.0)/M_PI;
-	//int pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
 
 	return roll;
+}
+
+int grausAcelZ(){
+	double fXg = eixos.acelX * alpha + (fXg * (1.0 - alpha));
+	double fYg = eixos.acelY * alpha + (fYg * (1.0 - alpha));
+	double fZg = eixos.acelZ * alpha + (fZg * (1.0 - alpha));
+
+	int pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
+
+	return pitch;
 }

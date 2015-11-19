@@ -55,7 +55,7 @@ int main(int argc, char **argv){
     				int roll  = (atan2(-fYg, fZg)*180.0)/M_PI;
     				int pitch = (atan2(fXg, sqrt(fYg*fYg + fZg*fZg))*180.0)/M_PI;
 
-    			   //cout << "pitch " << pitch << endl;
+    			   cout << "pitch " << pitch << endl;
     			   cout << "roll " << roll << endl;
     		   }
     	   }

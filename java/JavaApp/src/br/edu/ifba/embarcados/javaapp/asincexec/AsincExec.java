@@ -39,6 +39,7 @@ public class AsincExec implements Runnable {
 				
 				notificar(conector.grausAcel());
 				
+				
 				try {
 					Thread.sleep(0);
 				} catch (InterruptedException e) {

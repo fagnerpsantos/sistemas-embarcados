@@ -1,11 +1,14 @@
 package br.edu.ifba.embarcados.javaapp.graphs;
 
 
+import java.awt.Component;
 import java.awt.GridLayout;
 
 import javax.swing.JDialog;
 
 import br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro;
+import br.edu.ifba.embarcados.javaapp.conector.FabricaConectores;
+import br.edu.ifba.embarcados.javaapp.conector.IComunicacaoSensores;
 
 public class Dialog extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -13,19 +16,19 @@ public class Dialog extends JDialog {
 	
 	//Cria uma janela do tamanho 400 x 300 
 	public Dialog(){
-		setSize(400, 300);
+		setSize(400, 400);
 		setResizable(false);
 		
 	}
 	
 	//Inicia a janela 
 	public void init(){
-		setLocationRelativeTo(null);
-		setLayout(new GridLayout(1, 1, 0, 0));
 		
 		add(tela);
+	
 		setVisible(true);
 		setModal(true);
+		
 		
 	}
 	
