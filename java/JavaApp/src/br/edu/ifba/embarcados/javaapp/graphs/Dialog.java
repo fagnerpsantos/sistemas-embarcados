@@ -1,4 +1,4 @@
-package br.edu.ifba.embarcados.javaapp.graphs;
+﻿package br.edu.ifba.embarcados.javaapp.graphs;
 
 
 import java.awt.Component;
@@ -25,6 +25,7 @@ public class Dialog extends JDialog {
 	public void init(){
 		
 		add(tela);
+                setTitle("Régua de Nivelamento");
 	
 		setVisible(true);
 		setModal(true);
