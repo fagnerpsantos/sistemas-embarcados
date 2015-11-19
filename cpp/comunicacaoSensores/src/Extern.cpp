@@ -63,7 +63,7 @@ int finalizar(){
 // Essa é a função principal. Nela, enviamos os dados que recebemos do acelerômetro em forma de graus.
 // Utilizamos o arctang para esse cálculo
 
-int grausAcelY(){
+int grausAcel(){
 	double fXg = eixos.acelX * alpha + (fXg * (1.0 - alpha));
 	double fYg = eixos.acelY * alpha + (fYg * (1.0 - alpha));
 	double fZg = eixos.acelZ * alpha + (fZg * (1.0 - alpha));

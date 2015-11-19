@@ -13,7 +13,7 @@
 
 #include <stdlib.h>
 
-#ifdef _WIN32 || _WIN64
+#if _WIN32 || _WIN64
 #include <Windows.h>
 #endif
 
@@ -30,7 +30,7 @@ private:
 	int hPorta;
 #endif
 
-#ifdef _WIN32 || _WIN64
+#if _WIN32 || _WIN64
 	HANDLE hPorta;
 #endif
 

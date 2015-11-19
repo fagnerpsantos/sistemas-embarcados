@@ -25,7 +25,7 @@ public class Dialog extends JDialog {
 	public void init(){
 		
 		add(tela);
-	
+		
 		setVisible(true);
 		setModal(true);
 		

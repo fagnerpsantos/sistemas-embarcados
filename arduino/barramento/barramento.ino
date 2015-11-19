@@ -20,6 +20,7 @@ double fZg = 0;
 
 ADXL345 acc;
 
+//Inicia a porta serial e o acelerometro
 void setup()
 {
   Serial.begin(9600);
@@ -27,13 +28,14 @@ void setup()
 	
 	
 }
-
+//Cria uma estrutura que ira comportar os 3 eixos do acelerometro
 struct Eixos{
   int acelX, acelY, acelZ;
 };
 
 Eixos eixos;
 
+//Coloca os dados do acelerometro na estrutura
 void enviarEixos() {
   int tam = sizeof(eixos);
   char buff[tam];
@@ -45,7 +47,7 @@ void enviarEixos() {
   
 }
 
-
+//VArre o acelerometro enviando os eixos
 void loop()
 {
 	acc.read(&eixos.acelX, &eixos.acelY, &eixos.acelZ);

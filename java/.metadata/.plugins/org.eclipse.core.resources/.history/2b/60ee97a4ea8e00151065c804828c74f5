@@ -1,0 +1,16 @@
+from ctypes import cdll
+import time
+sensores = cdll.LoadLibrary("/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/java/JavaApp/comunicacaoSensores.so")
+
+resultado = sensores.iniciar("/dev/ttyUSB0")
+
+if resultado == 0:
+    print("OK para acessar")
+    
+    while True:
+        sensores.ler();
+        print("Acelerometro ", sensores.grausAcel())
+        
+        time.sleep(0)
+else:
+    print("Nao foi possivel ler o acelerometro")
