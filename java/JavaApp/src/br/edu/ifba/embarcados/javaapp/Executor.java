@@ -1,4 +1,4 @@
-package br.edu.ifba.embarcados.javaapp;
+﻿package br.edu.ifba.embarcados.javaapp;
 
 import br.edu.ifba.embarcados.javaapp.asincexec.AsincExec;
 import br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro;
@@ -33,6 +33,7 @@ public class Executor {
 		t.start();
 		
 		dialog.init();
+                asinc.setContinuar(false);
 		
 		t.join();	
 
