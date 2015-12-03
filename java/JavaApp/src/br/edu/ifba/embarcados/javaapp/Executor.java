@@ -32,6 +32,7 @@ public class Executor {
 		//Iniciar
 		t.start();
 		
+		// FIXME a tela nao estah funcionando como modal (nao impedira o asinc de parar logo em seguida)
 		dialog.init();
                 asinc.setContinuar(false);
 		
