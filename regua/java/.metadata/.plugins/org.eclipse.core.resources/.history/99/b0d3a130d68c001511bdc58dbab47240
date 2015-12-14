@@ -1,0 +1,38 @@
+package br.edu.ifba.embarcados.javaapp.graphs;
+
+
+import java.awt.GridLayout;
+
+import javax.swing.JDialog;
+
+import br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro;
+
+public class Dialog extends JDialog {
+	private static final long serialVersionUID = 1L;
+	Painel tela = new Painel();
+	
+	public Dialog(){
+		setSize(400, 300);
+		setResizable(false);
+		
+	}
+	
+	public void init(){
+		setLocationRelativeTo(null);
+		setLayout(new GridLayout(1, 1, 0, 0));
+		
+		add(tela);
+		setVisible(true);
+		setModal(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		new Dialog();
+	}
+	
+	public IListenerAcelerometro getListener() {
+		return tela;
+	}
+
+}

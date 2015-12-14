@@ -1,0 +1,78 @@
+/*
+ * Essa classe é responsável por criar o retângulo, foi utilizada a biblioteca
+ * graphcs2D do próprio Java
+ */
+
+package br.edu.ifba.embarcados.javaapp.graphs;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro;
+
+public class Retangulo extends JPanel implements IListenerAcelerometro {
+	
+	
+    public Retangulo() {
+    	repaint();
+    }
+    
+    public static int angulo = 0;
+    
+    /*
+     * Essa função fica pegando os dados do acelerômetro e manipulando o 
+     * retângulo
+     */
+	@Override
+	public void notificarMovimento(int x) {
+		angulo = x;
+		
+		removeAll();
+		updateUI();
+		repaint();
+		
+	}
+
+	/*
+	 * Essa função é pra dar vida ao retângulo. A cor, tamanho..
+	 */
+    
+    protected void paintComponent(Graphics g) {
+    	
+    	super.paint(g);
+		Graphics2D g2d = (Graphics2D) g.create();
+		
+		//retangulo
+		g2d.drawRect(20, 20, 400, 400);
+		
+		//diagonais
+		g2d.drawLine(20, 20, 420, 420);
+		g2d.drawLine(20, 420, 420, 20);
+		
+		//vert
+		g2d.drawLine(220, 20, 220, 420);
+		//horizontal
+		g2d.drawLine(20, 220, 420, 220);
+		
+		
+		g2d.drawRect(450, 20, 400, 400);
+		
+		//diagonais
+		g2d.drawLine(450, 20, 850, 420);
+		g2d.drawLine(450, 420, 850, 20);
+	
+		//vert
+		g2d.drawLine(650, 20, 650, 420);
+		//horizontal
+		g2d.drawLine(450, 220, 850, 220);
+    }
+
+    
+
+}
