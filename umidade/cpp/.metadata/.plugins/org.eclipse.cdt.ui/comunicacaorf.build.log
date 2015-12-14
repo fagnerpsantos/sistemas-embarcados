@@ -1,0 +1,15 @@
+12:18:59 **** Incremental Build of configuration Debug for project comunicacaorf ****
+make all 
+Building file: ../src/Extern.cpp
+Invoking: GCC C++ Compiler
+g++ -I"/home/fagnerpsantos/Developer/Arduino/baby_care/source/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Extern.d" -MT"src/Extern.d" -o "src/Extern.o" "../src/Extern.cpp"
+Finished building: ../src/Extern.cpp
+ 
+Building target: comunicacaorf
+Invoking: GCC C++ Linker
+g++  -o "comunicacaorf"  ./src/Comunicacao.o ./src/Executor.o ./src/Extern.o   
+Finished building target: comunicacaorf
+ 
+
+12:19:00 Build Finished (took 160ms)
+

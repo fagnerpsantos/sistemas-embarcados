@@ -1,0 +1,28 @@
+/*
+ * Executor.cpp
+ *
+ *  Created on: 26/11/2015
+ *      Author: fagnerpsantos a Ana Paula de Andrade :D
+ */
+
+#include <iostream>
+#include <Comunicacao.h>
+
+using namespace std;
+
+struct InfoRF {
+	short id;
+	short batimentos;
+	short temperatura;
+	bool movimento;
+};
+
+int main(int argc, char **argv) {
+
+	cout << "try";
+
+
+	return 0;
+
+}
+

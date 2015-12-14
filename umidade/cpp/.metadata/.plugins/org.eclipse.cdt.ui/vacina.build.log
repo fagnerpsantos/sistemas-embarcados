@@ -1,0 +1,6 @@
+10:46:44 **** Incremental Build of configuration Debug for project vacina ****
+make all 
+make: Nada a ser feito para `all'.
+
+10:46:44 Build Finished (took 64ms)
+

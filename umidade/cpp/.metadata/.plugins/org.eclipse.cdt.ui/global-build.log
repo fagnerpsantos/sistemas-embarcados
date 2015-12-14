@@ -1,0 +1,47 @@
+12:16:14 **** Build of configuration Debug for project comunicacaorf ****
+make all 
+Building file: ../src/Comunicacao.cpp
+Invoking: GCC C++ Compiler
+g++ -I"/home/fagnerpsantos/Developer/Arduino/baby_care/source/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Comunicacao.d" -MT"src/Comunicacao.d" -o "src/Comunicacao.o" "../src/Comunicacao.cpp"
+Finished building: ../src/Comunicacao.cpp
+ 
+Building file: ../src/Executor.cpp
+Invoking: GCC C++ Compiler
+g++ -I"/home/fagnerpsantos/Developer/Arduino/baby_care/source/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Executor.d" -MT"src/Executor.d" -o "src/Executor.o" "../src/Executor.cpp"
+../src/Executor.cpp: In function ‘int main(int, char**)’:
+../src/Executor.cpp:21:32: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  Comunicacao com("/dev/ttyUSB0");
+                                ^
+Finished building: ../src/Executor.cpp
+ 
+Building file: ../src/Extern.cpp
+Invoking: GCC C++ Compiler
+g++ -I"/home/fagnerpsantos/Developer/Arduino/baby_care/source/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Extern.d" -MT"src/Extern.d" -o "src/Extern.o" "../src/Extern.cpp"
+Finished building: ../src/Extern.cpp
+ 
+Building target: comunicacaorf
+Invoking: GCC C++ Linker
+g++  -o "comunicacaorf"  ./src/Comunicacao.o ./src/Executor.o ./src/Extern.o   
+Finished building target: comunicacaorf
+ 
+12:16:19 **** Incremental Build of configuration Debug for project comunicacaorf ****
+make all 
+make: Nada a ser feito para `all'.
+12:16:47 **** Incremental Build of configuration Debug for project comunicacaorf ****
+make all 
+make: Nada a ser feito para `all'.
+12:17:19 **** Incremental Build of configuration Debug for project comunicacaorf ****
+make all 
+make: Nada a ser feito para `all'.
+12:18:59 **** Incremental Build of configuration Debug for project comunicacaorf ****
+make all 
+Building file: ../src/Extern.cpp
+Invoking: GCC C++ Compiler
+g++ -I"/home/fagnerpsantos/Developer/Arduino/baby_care/source/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Extern.d" -MT"src/Extern.d" -o "src/Extern.o" "../src/Extern.cpp"
+Finished building: ../src/Extern.cpp
+ 
+Building target: comunicacaorf
+Invoking: GCC C++ Linker
+g++  -o "comunicacaorf"  ./src/Comunicacao.o ./src/Executor.o ./src/Extern.o   
+Finished building target: comunicacaorf
+ 
