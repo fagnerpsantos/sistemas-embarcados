@@ -1,4 +1,4 @@
-package br.edu.ifba.embarcados.javaapp;
+﻿package br.edu.ifba.embarcados.javaapp;
 
 import br.edu.ifba.embarcados.javaapp.asincexec.AsincExec;
 import br.edu.ifba.embarcados.javaapp.asincexec.IListenerAcelerometro;
@@ -32,7 +32,9 @@ public class Executor {
 		//Iniciar
 		t.start();
 		
+		// FIXME a tela nao estah funcionando como modal (nao impedira o asinc de parar logo em seguida)
 		dialog.init();
+                asinc.setContinuar(false);
 		
 		t.join();	
 
