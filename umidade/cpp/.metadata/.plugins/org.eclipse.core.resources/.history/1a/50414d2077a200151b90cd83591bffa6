@@ -2,7 +2,7 @@
  * Executor.cpp
  *
  *  Created on: 26/11/2015
- *      Author: fagnerpsantos e anaandrade
+ *      Author: root
  */
 #include <iostream>
 #include <Comunicacao.h>

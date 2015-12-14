@@ -41,3 +41,13 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.cdt.core 1 0 2015-12-14 10:46:14.669
 !MESSAGE Indexed 'vacina' (3 sources, 141 headers) in 3,15 sec: 10.170 declarations; 16.397 references; 0 unresolved inclusions; 0 syntax errors; 2 unresolved names (0,0075%)
+!SESSION 2015-12-14 12:26:35.467 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_66
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -data /home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-12-14 12:26:37.211
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
