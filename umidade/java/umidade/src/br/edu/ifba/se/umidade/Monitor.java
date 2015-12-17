@@ -116,15 +116,19 @@ public class Monitor {
 		 modeloMedidorLuminosidade.setValue(info.getLuminosidade());
 
 	}
-	
+
+	String planta = " ";
 	public String getPlanta(){
-		if(info.getUmidade() < 50){
-			planta = "Preciso de água! Regue-me :/";
+		if(info.getUmidade() < 30){
+			planta = "Preciso de água! Regue-me :/ ";
+		}
+		else if((info.getUmidade() > 30) && (info.getUmidade() > 50)){
+			planta = "Por enquanto, não necessito de água! Obrigada por cuidar de mim! *---* ";
 		} else{
-			planta = "Por enquanto, não necessito de água! Obrigada por cuidar de mim! :D";
+			planta = "Já estou com bastante água, por favor, desligue a Srt. Torneira! :) ";
 		}
 		return planta;
 	}
-	String planta = " ";
+	
 
 }
