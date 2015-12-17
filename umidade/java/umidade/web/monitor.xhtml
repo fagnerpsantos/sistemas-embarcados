@@ -21,10 +21,12 @@
 		<p:chart id="medidorUmidade" type="metergauge" 
 		model="#{monitor.modeloMedidorUmidade}"
 		style="width:400px; height:250px"></p:chart>
+		<p:outputLabel id="molharPlanta"
+		value = "Status: #{monitor.planta}"></p:outputLabel>
 		
 		
 		<p:poll interval="1" listener="#{monitor.lerSensores}"
-		 update="formMonitor:medidorTemperatura, formMonitor:medidorUmidade, formMonitor:medidorLuminosidade"></p:poll>
+		 update="formMonitor:medidorTemperatura, formMonitor:medidorUmidade, formMonitor:medidorLuminosidade, formMonitor:molharPlanta"></p:poll>
 	</h:form>
 </h:body>
 </html>

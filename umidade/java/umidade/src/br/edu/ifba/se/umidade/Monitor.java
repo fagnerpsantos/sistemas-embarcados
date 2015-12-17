@@ -101,9 +101,10 @@ public class Monitor {
 		return new MeterGaugeChartModel(0, marcadores);
 	}
 	
+	Informacao info = SingleConector.getInformacao();
 	public void lerSensores() {
 		// acionar a leitura do arduino
-		Informacao info = SingleConector.getInformacao();
+		
 
 		System.out.println("Temperatura = " + info.getTemperatura());
 		System.out.println("Luminosidade = " + info.getLuminosidade());
@@ -116,9 +117,14 @@ public class Monitor {
 
 	}
 	
-	public int getUmidade(){
-		Informacao info = SingleConector.getInformacao();
-		return info.getUmidade();
+	public String getPlanta(){
+		if(info.getUmidade() < 50){
+			planta = "Preciso de água! Regue-me :/";
+		} else{
+			planta = "Por enquanto, não necessito de água! Obrigada por cuidar de mim! :D";
+		}
+		return planta;
 	}
+	String planta = " ";
 
 }
