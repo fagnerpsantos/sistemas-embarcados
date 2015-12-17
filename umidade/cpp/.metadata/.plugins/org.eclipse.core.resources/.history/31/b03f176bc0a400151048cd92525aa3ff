@@ -22,25 +22,21 @@ int Comunicacao::iniciar() {
 
 	int resultado = EXIT_SUCCESS;
 
-#if _WIN32 ||_WIN64
-	//abrindo a porta para leitura e escrita, open_existing so abre se ja existir
-	hPorta = CreateFile(porta, GENERIC_READ | GENERIC_WRITE,
-			0, NULL, OPEN_EXISTING, 0, NULL);
-	//para o caso de nao conseguir realizar o CreateFile, dar retornno de erro do sistema
-	if (hPorta == INVALID_HANDLE_VALUE){
+#if _WIN32 || _WIN64
+	hPorta = CreateFile(porta, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+	if (hPorta == INVALID_HANDLE_VALUE) {
 		resultado = GetLastError();
 	} else {
-
+		// configuracao da porta
 		DCB dcb;
 		memset(&dcb, 0, sizeof(dcb));
-		//informa o tamanho do dcb
-		dcb.DCBlength = sizeof(dcb);
+		dcb.DCBlenght = sizeof(dcb);
 		dcb.BaudRate = CBR_9600;
 		dcb.Parity = NOPARITY;
 		dcb.StopBits = ONESTOPBIT;
 		dcb.ByteSize = 8;
 
-		if (!SetCommState(hPorta, &dcb)){
+		if(!SetCommState(Hporta, &dcb)) {
 			resultado = GetLastError();
 		}
 	}
@@ -64,7 +60,7 @@ int Comunicacao::ler(char* buffer, long unsigned int bytesParaLer) {
 	int resultado = EXIT_FAILURE;
 	long unsigned int bytesLidos = 0;
 #if _WIN32 || _WIN64
-	ReadFile(hPorta, buffer, bytesParaLer, &bytesLidos, NULL);
+	ReadFile(hPorta, buff, bytesParaLer, bytesLidos, NULL);
 #endif
 
 #ifdef __linux__

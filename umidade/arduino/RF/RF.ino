@@ -41,8 +41,8 @@ long lerSensoresRF(){
   long umidade = analogRead(A2);
   
   luminosidade = map(luminosidade, 0, 1023, 0, 200);
-  temperatura = map(temperatura, 0, 1023, 0, 40);
-  umidade = map(umidade, 0, 1023, 0, 100);
+  temperatura = map(temperatura, 0, 1023, 0, 50);
+  umidade = map(umidade, 1023, 0, 0, 100);
   
   long rf = RFID;
   long info = rf << DESLOCAMENTO_RFID;
@@ -125,7 +125,7 @@ void loop(){
   //EMISSAO DE DADOS
   long info = lerSensoresRF();
   emitir(info);
-  delay(50); 
+  delay(1000); 
 
   //RECEPCAO DE DADOS
   info = receber();
