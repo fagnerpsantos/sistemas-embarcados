@@ -1,0 +1,28 @@
+package br.edu.ifba.se.babycare.leitor;
+
+import br.edu.ifba.se.babycare.conector.SingleConector;
+
+
+//Isso aqui é pra terceira unidade!
+public class LeitorAssincrono implements Runnable {
+
+	private boolean continuar;
+
+	
+	@Override
+	public void run() {
+
+		continuar = true;
+		
+		while(continuar){
+			
+			SingleConector.getConector().ler();
+			
+			Thread.sleep(50);
+			
+			
+		}
+		
+	}
+
+}

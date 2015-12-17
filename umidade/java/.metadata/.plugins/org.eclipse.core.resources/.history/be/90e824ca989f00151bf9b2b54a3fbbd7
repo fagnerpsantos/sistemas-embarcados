@@ -1,0 +1,27 @@
+package br.edu.ifba.se.babycare.leitor;
+
+import java.util.concurrent.Semaphore;
+
+
+//Isso aqui é pra terceira unidade!
+public class LeitorAssincrono implements Runnable {
+
+	private boolean continuar;
+	private Semaphore semaforo;
+	
+	public public LeitorAssincrono() {
+		semaforo = new Semaphore(1, true);
+	}
+	
+	@Override
+	public void run() {
+
+		continuar = true;
+		
+		while(continuar){
+			
+		}
+		
+	}
+
+}
