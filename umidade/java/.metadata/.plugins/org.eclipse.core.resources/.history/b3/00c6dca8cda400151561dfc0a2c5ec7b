@@ -1,0 +1,134 @@
+package br.edu.ifba.se.umidade;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+
+import org.primefaces.model.chart.MeterGaugeChartModel;
+
+import br.edu.ifba.se.umidade.conector.SingleConector;
+
+
+@ManagedBean(name = "monitor")
+public class Monitor {
+
+	private MeterGaugeChartModel modeloMedidorTemperatura;
+	private MeterGaugeChartModel modeloMedidorUmidade;
+	private MeterGaugeChartModel modeloMedidorLuminosidade;
+
+	@PostConstruct
+	public void iniciar() {
+		configurarMedidores();
+	}
+
+	private void configurarMedidores() {
+		modeloMedidorTemperatura = criarModeloTemperatura();
+		modeloMedidorTemperatura.setTitle("Temperatura");
+		modeloMedidorTemperatura.setGaugeLabel("Graus");
+
+		modeloMedidorUmidade = criarModeloUmidade();
+		modeloMedidorUmidade.setTitle("Umidade");
+		modeloMedidorUmidade.setGaugeLabel("%");
+
+		modeloMedidorLuminosidade = criarModeloLuminosidade();
+		modeloMedidorLuminosidade.setTitle("Luminosidade");
+		modeloMedidorLuminosidade.setGaugeLabel("Lumens");
+	}
+
+
+	public MeterGaugeChartModel getModeloMedidorTemperatura() {
+		return modeloMedidorTemperatura;
+	}
+
+	public MeterGaugeChartModel getModeloMedidorUmidade() {
+		return modeloMedidorUmidade;
+	}
+	
+	public MeterGaugeChartModel getModeloMedidorLuminosidade() {
+		return modeloMedidorLuminosidade;
+	}
+
+	private MeterGaugeChartModel criarModeloTemperatura() {
+		List<Number> marcadores = new ArrayList<Number>();
+		marcadores.add(0);
+		marcadores.add(5);
+		marcadores.add(10);
+		marcadores.add(15);
+		marcadores.add(20);
+		marcadores.add(25);
+		marcadores.add(30);
+		marcadores.add(35);
+		marcadores.add(40);
+		marcadores.add(45);
+		marcadores.add(50);
+
+		return new MeterGaugeChartModel(0, marcadores);
+
+	}
+	
+
+	private MeterGaugeChartModel criarModeloUmidade() {
+		List<Number> marcadores = new ArrayList<Number>();
+		marcadores.add(0);
+		marcadores.add(10);
+		marcadores.add(20);
+		marcadores.add(30);
+		marcadores.add(40);
+		marcadores.add(50);
+		marcadores.add(60);
+		marcadores.add(70);
+		marcadores.add(80);
+		marcadores.add(90);
+		marcadores.add(100);
+		
+		return new MeterGaugeChartModel(0, marcadores);
+	}
+
+	private MeterGaugeChartModel criarModeloLuminosidade() {
+		List<Number> marcadores = new ArrayList<Number>();
+		marcadores.add(0);
+		marcadores.add(25);
+		marcadores.add(50);
+		marcadores.add(75);
+		marcadores.add(100);
+		marcadores.add(125);
+		marcadores.add(150);
+		marcadores.add(175);
+		marcadores.add(200);
+		
+		return new MeterGaugeChartModel(0, marcadores);
+	}
+	
+	Informacao info = SingleConector.getInformacao();
+	public void lerSensores() {
+		// acionar a leitura do arduino
+		
+
+		System.out.println("Temperatura = " + info.getTemperatura());
+		System.out.println("Luminosidade = " + info.getLuminosidade());
+		System.out.println("Umidade = " + info.getUmidade());
+		
+		// // atualizar os valores nos medidores
+		 modeloMedidorTemperatura.setValue(info.getTemperatura());
+		 modeloMedidorUmidade.setValue(info.getUmidade());
+		 modeloMedidorLuminosidade.setValue(info.getLuminosidade());
+
+	}
+
+	String planta = " ";
+	public String getPlanta(){
+		if(info.getUmidade() < 30){
+			planta = "Preciso de água! Regue-me :/ ";
+		}
+		else if((info.getUmidade() > 30) && (info.getUmidade() < 50)){
+			planta = "Por enquanto, não necessito de água! Obrigada por cuidar de mim! *---* ";
+		} else{
+			planta = "Já estou com bastante água, por favor, desligue a Srt. Torneira! :) ";
+		}
+		return planta;
+	}
+	
+
+}

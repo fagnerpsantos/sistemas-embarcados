@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="/home/fagnerpsantos/Developer/Arduino/baby_care/source/java/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/fagnerpsantos/Developer/Arduino/baby_care/source/java/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/babycare" path="/babycare" reloadable="true" source="org.eclipse.jst.jee.server:babycare"/></Host>
+      <Context docBase="/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/java/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/java/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/umidade" path="/umidade" reloadable="true" source="org.eclipse.jst.jee.server:umidade"/></Host>
     </Engine>
   </Service>
 </Server>

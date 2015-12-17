@@ -25,16 +25,14 @@ public class Monitor {
 
 	private void configurarMedidores() {
 		modeloMedidorTemperatura = criarModeloTemperatura();
-		modeloMedidorTemperatura.setTitle("Temperatura");
-		modeloMedidorTemperatura.setGaugeLabel("Graus");
+		modeloMedidorTemperatura.setTitle("Temperatura: "+info.getTemperatura());		
 
 		modeloMedidorUmidade = criarModeloUmidade();
-		modeloMedidorUmidade.setTitle("Umidade");
-		modeloMedidorUmidade.setGaugeLabel("%");
+		modeloMedidorUmidade.setTitle("Umidade: "+info.getUmidade());
+		
 
 		modeloMedidorLuminosidade = criarModeloLuminosidade();
-		modeloMedidorLuminosidade.setTitle("Luminosidade");
-		modeloMedidorLuminosidade.setGaugeLabel("Lumens");
+		modeloMedidorLuminosidade.setTitle("Luminosidade: "+info.getLuminosidade());
 	}
 
 
@@ -122,7 +120,7 @@ public class Monitor {
 		if(info.getUmidade() < 30){
 			planta = "Preciso de água! Regue-me :/ ";
 		}
-		else if((info.getUmidade() > 30) && (info.getUmidade() > 50)){
+		else if((info.getUmidade() > 30) && (info.getUmidade() < 50)){
 			planta = "Por enquanto, não necessito de água! Obrigada por cuidar de mim! *---* ";
 		} else{
 			planta = "Já estou com bastante água, por favor, desligue a Srt. Torneira! :) ";
