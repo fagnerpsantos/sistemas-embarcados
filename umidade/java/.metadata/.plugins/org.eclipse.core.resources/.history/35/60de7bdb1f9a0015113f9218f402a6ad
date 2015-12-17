@@ -1,0 +1,12 @@
+package br.edu.ifba.se.babycare;
+
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name="monitor")
+public class Monitor {
+	
+	public void lerSensores(){
+		
+	}
+
+}

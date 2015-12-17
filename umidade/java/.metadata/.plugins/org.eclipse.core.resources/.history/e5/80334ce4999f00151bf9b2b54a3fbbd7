@@ -1,0 +1,11 @@
+package br.edu.ifba.se.babycare;
+
+//Isso aqui é pra terceira unidade
+
+public class Informacao {
+	
+	private int batimentos;
+	private int movimentos;
+	private int temperatura;
+
+}

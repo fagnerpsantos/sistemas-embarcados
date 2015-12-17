@@ -1,0 +1,94 @@
+package br.edu.ifba.se.babycare.conector;
+
+import java.util.concurrent.Semaphore;
+
+import br.edu.ifba.se.babycare.IComunicacaoRF;
+import br.edu.ifba.se.babycare.Informacao;
+
+public class SingleConector {
+	
+	private static final String PORTA = "/dev/ttyUSB0";
+	private static IComunicacaoRF comRF = null;
+	/*Terceira Unidade
+	private static Informacao info;
+	private static Semaphore semaforo;
+	*/
+	
+	
+	public static void iniciarComunicacaoRF(String libPath){
+		comRF = FabricaConectores.getConector(libPath);
+		if(comRF.iniciar(PORTA) == 0){
+		   System.out.println("Acesso a sensores iniciado com sucesso!");	
+		   dispensarPrimeirasLeituras();
+		   
+		   //Terceira Unidade
+		   //semaforo = new Semaphore(1, true);
+		} else{
+			System.out.println("Não foi possivel acesso a sensores!");
+		}
+	}
+	
+	public static void dispensarPrimeirasLeituras(){
+		for(int i = 0; i < 10; i++){
+			comRF.ler();
+			
+			System.out.println("dispensando leitura [B/T/M]: "+ comRF.getBatimentos()+ "/"+
+			comRF.getTemperatura() + "/" + comRF.getMovimento());
+			try {
+				//Mudar pra 50 na terceira unidade
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/*Terceira Unidade
+	public static int ler(){
+		try {
+			semaforo.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int resultado = comRF.ler();
+		
+		if(resultado == 0){
+			info.setTemperatura(comRF.getTemperatura());
+			info.setBatimentos(comRF.getBatimentos());
+			info.setMovimentos(comRF.getMovimento());
+		}
+		
+		semaforo.release();
+		
+		return resultado;
+	}
+	*/
+	
+	//Apagar para a terceira unidade
+	public static IComunicacaoRF getConector(){
+		return comRF;
+	}
+	
+	/*Terceira Unidade
+	public static Informacao getInformacao(){
+		Informacao info_ = new Informacao();
+		
+		try {
+			semaforo.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		info.setBatimentos(info.getBatimentos());
+		info.setTemperatura(info.getTemperatura());
+		info.setMovimentos(info.getMovimentos());
+		
+		semaforo.release();
+		
+		return info_;
+	}
+	*/
+
+}
