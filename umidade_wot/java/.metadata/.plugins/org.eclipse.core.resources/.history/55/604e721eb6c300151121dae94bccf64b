@@ -1,0 +1,25 @@
+package br.edu.ifba.embarcados.webcoisas.cliente;
+
+import java.io.BufferedReader;
+
+
+public class Executor {
+	
+	private static final String URL = "";
+	
+	public void acessarId(){
+		HttpClient clienteHttp = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "id");
+		
+		HttpResponse resposta = clienteHttp.execute(get);
+		
+		BufferedReader br = new BefferedReader(new InputStreamReader(resposta.getEntity.getContent()));
+		
+		String id = br.readLine();
+	}
+	
+	public static void main(String[] args){
+		
+	}
+
+}

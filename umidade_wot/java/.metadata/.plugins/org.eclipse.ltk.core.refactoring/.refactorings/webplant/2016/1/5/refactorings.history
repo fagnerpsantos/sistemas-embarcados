@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 packages to &apos;t/src&apos;&#x0A;- Original project: &apos;webplant&apos;&#x0A;- Destination element: &apos;t/src&apos;&#x0A;- Original elements:&#x0A;     webplant/src/br.edu.ifba.embarcados.webplant.sensoriamento&#x0A;     webplant/src/br.edu.ifba.embarcados.webplant" description="Copy packages" destination="=t/src" element1="/src&lt;br.edu.ifba.embarcados.webplant.sensoriamento" element2="/src&lt;br.edu.ifba.embarcados.webplant" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1453741237192" version="1.0"/>
+</session>

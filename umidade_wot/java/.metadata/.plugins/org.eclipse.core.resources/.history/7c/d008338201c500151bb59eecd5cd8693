@@ -1,0 +1,62 @@
+package br.edu.ifba.embarcados.webcoisas.sensoriamento;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class LeitorSensoriamento implements 
+	Runnable {
+	
+	// referencia/acesso estatico a sensores
+	private static Integer sensores = 0;
+	
+	public static int getSensores() {
+		synchronized (sensores) {
+			return sensores;
+		}
+	}
+
+	private static final String ARQUIVO_PIPE = 
+			"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade_wot/cpp/sensoriamentod/sensoriamentop";
+	
+	private RandomAccessFile pipe = null;
+	private boolean continuar = true;
+	
+	public LeitorSensoriamento() {
+		try {
+			pipe = new RandomAccessFile(ARQUIVO_PIPE, "r");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		continuar = true;
+		while (continuar) {
+			String s = "";
+			try {
+				if (((s = pipe.readLine()) != null) && !s.equals("")) {
+					synchronized (sensores) {
+						sensores = Integer.parseInt(s);
+					}
+
+					Thread.sleep(1000);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			pipe.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void parar() {
+		continuar = false;
+	}
+	
+
+}

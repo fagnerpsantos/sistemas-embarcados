@@ -1,0 +1,19 @@
+package br.edu.ifba.embarcados.webcoisas.cliente;
+
+
+public class Executor {
+	
+	private static final String URL = "";
+	
+	public void acessarId(){
+		HttpClient clienteHttp = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "id");
+		
+		HttpResponse resposta = clienteHttp.execute(get);
+	}
+	
+	public static void main(String[] args){
+		
+	}
+
+}

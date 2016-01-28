@@ -1,0 +1,48 @@
+package br.edu.ifba.embarcados.webcoisas.cliente;
+
+import java.io.BufferedReader;
+
+
+public class Executor {
+	
+	private static final String URL = "";
+	
+	public static void acessarId() {
+		HttpClient clienteHttp = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "id");
+		
+		HttpResponse resposta = clienteHttp.execute(get);
+		
+		BufferedReader br = new BefferedReader(new InputStreamReader(resposta.getEntity.getContent()));
+		
+		if(br != null){
+		String id = br.readLine();
+		
+		System.out.println("ID = " + id);
+		}
+	}
+	
+	public static void acessarBatimentos() {
+		HttpClient clienteHttp = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "sensores/batimentos");
+		
+		HttpResponse resposta = clienteHttp.execute(get);
+		
+		BufferedReader br = new BefferedReader(new InputStreamReader(resposta.getEntity.getContent()));
+		
+		if(br != null){
+		String batimentos = br.readLine();
+		
+		System.out.println("Batimentos = " + batimentos);
+		}
+	}
+	
+	public static void main(String[] args){
+		acessarId();
+		
+		while(true){
+			acessarBatimentos();
+		}
+	}
+
+}
