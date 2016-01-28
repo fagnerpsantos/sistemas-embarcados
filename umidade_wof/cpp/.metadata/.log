@@ -1,0 +1,20 @@
+!SESSION 2016-01-25 19:05:35.673 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-01-25 19:06:21.401
+!MESSAGE Indexed 'sensoriamentod' (2 sources, 167 headers) in 8.99 sec: 12,035 declarations; 19,589 references; 0 unresolved inclusions; 0 syntax errors; 2 unresolved names (0.0063%)
+!SESSION 2016-01-27 09:49:33.689 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-01-27 09:49:37.285
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
