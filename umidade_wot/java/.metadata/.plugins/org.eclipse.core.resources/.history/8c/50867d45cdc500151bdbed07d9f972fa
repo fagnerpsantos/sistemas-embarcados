@@ -1,0 +1,99 @@
+package br.edu.ifba.embarcados.webcoisas.sensoriamento;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class LeitorSensoriamento implements 
+	Runnable {
+	
+	private static final int DESLOCAMENTO_RFID = 26;
+	private static final int DESLOCAMENTO_UMI = 18;
+	private static final int DESLOCAMENTO_LUMI = 10;
+
+	private static final String ARQUIVO_PIPE = 
+			"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade_wot/cpp/sensoriamentod/sensoriamentop";
+	
+	private RandomAccessFile pipe = null;
+	private boolean continuar = true;
+	
+	private static Integer sensores = 0;
+	
+	public static int getRFID() {
+		int id = getSensores();
+		
+		id = id >> DESLOCAMENTO_RFID;
+		
+		return id;
+	}
+	
+	public static int getUmidade() {
+		int mov = getSensores();
+		
+		mov = (mov & 66846720) >> DESLOCAMENTO_UMI;
+		
+		return mov;
+	}
+	
+	public static int getLuminosidade() {
+		int bat = getSensores();
+		
+		bat = (bat & 261120) >> DESLOCAMENTO_LUMI;
+		
+		return bat;
+	}
+	
+	public static int getTemperatura() {
+		int temp = getSensores();
+		
+		temp = (temp & 1023);
+		
+		return temp;
+	}
+
+	@Override
+	public void run() {
+		try {
+			pipe = new RandomAccessFile(ARQUIVO_PIPE,
+					"r");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			
+			return;
+		}
+		
+		continuar = true;
+		while (continuar) {
+			try {
+				String s = pipe.readLine();
+				
+				if ((s != null) && (!s.equals(""))) {
+					System.out.println("Sensores lidos: " + s);
+					
+					
+					synchronized(sensores) {
+						sensores = Integer.parseInt(s);
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void parar() {
+		continuar = false;
+	}
+	
+	public static Integer getSensores() {
+		synchronized (sensores) {
+			return sensores;
+		}
+	}
+}

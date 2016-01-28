@@ -6,6 +6,10 @@ import java.io.RandomAccessFile;
 
 public class LeitorSensoriamento implements 
 	Runnable {
+	
+	private static final int DESLOCAMENTO_RFID = 26;
+	private static final int DESLOCAMENTO_UMI = 18;
+	private static final int DESLOCAMENTO_LUMI = 10;
 
 	private static final String ARQUIVO_PIPE = 
 			"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade_wot/cpp/sensoriamentod/sensoriamentop";
@@ -14,17 +18,49 @@ public class LeitorSensoriamento implements
 	private boolean continuar = true;
 	
 	private static Integer sensores = 0;
+	
+	public static int getRFID() {
+		int id = getSensores();
+		
+		id = id >> DESLOCAMENTO_RFID;
+		
+		return id;
+	}
+	
+	public static int getUmidade() {
+		int mov = getSensores();
+		
+		mov = (mov & 66846720) >> DESLOCAMENTO_UMI;
+		
+		return mov;
+	}
+	
+	public static int getLuminosidade() {
+		int bat = getSensores();
+		
+		bat = (bat & 261120) >> DESLOCAMENTO_LUMI;
+		
+		return bat;
+	}
+	
+	public static int getTemperatura() {
+		int temp = getSensores();
+		
+		temp = (temp & 1023);
+		
+		return temp;
+	}
+	
+	public LeitorSensoriamento() {
+		try {
+			pipe = new RandomAccessFile(ARQUIVO_PIPE, "r");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void run() {
-		try {
-			pipe = new RandomAccessFile(ARQUIVO_PIPE,
-					"r");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			
-			return;
-		}
 		
 		continuar = true;
 		while (continuar) {
