@@ -34,6 +34,8 @@ void setup(){
      
 }
 
+//certo
+
 long lerSensoresRF(){
   
   long luminosidade = analogRead(PINO_BATIMENTOS);
@@ -108,13 +110,8 @@ int extrairId(long info){
 // ------------ Envio para USB
 void enviarParaUSB(long info){
 
-  
-char buff[sizeof(InfoRF)] = {0};
-  
-   
-   memcpy(&buff, &infoRF, sizeof(InfoRF));
-   Serial.write('I');
-   Serial.write((uint8_t*) &buff, sizeof(InfoRF));
+    Serial.write('I');
+   Serial.write((uint8_t*) &info, sizeof(info));
    Serial.write('F');
    
  
@@ -125,15 +122,17 @@ void loop(){
   //EMISSAO DE DADOS
   long info = lerSensoresRF();
   emitir(info);
-  delay(1000); 
+  delay(500); 
 
   //RECEPCAO DE DADOS
   info = receber();
     if(info != -1){
     if(RFIDValido(info)){
-      infoRF.umidade = extrairUmidade(info);
+     /* infoRF.umidade = extrairUmidade(info);
       infoRF.luminosidade = extrairLuminosidade(info);
       infoRF.temperatura = extrairTemperatura(info);
+      */
+      
       enviarParaUSB(info);
     }
   } 

@@ -1,0 +1,164 @@
+#include <fcntl.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <syslog.h>
+#include <string.h>
+#include <signal.h>
+using namespace std;
+
+#define ARQUIVO_LOG 	"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade_wot/cpp/sensoriamentod/sensoriamento.log"
+#define ARQUIVO_PIPE 	"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade_wot/cpp/sensoriamentod/sensoriamentop"
+
+bool continuar = true;
+int sensores = 0;
+char* porta ="/dev/ttyUSB0";
+int hPorta=0;
+bool portainiciada = false;
+
+int daemonize() {
+
+	int resultado = EXIT_SUCCESS;
+
+	pid_t daemon_id = 0;
+	pid_t sid = 0;
+
+	//PASSO 1: criar um processo clonado a partir do main
+
+	daemon_id = fork();
+	if (daemon_id < 0) {
+		//se falhar, o id do processo eh menor que 0
+		cout << "Falha de criação do daemon!" << endl;
+		// não faz nada, desiste da execução
+		resultado = EXIT_FAILURE;
+	} else {
+		/*
+		 * Se o daemon for criado, finaliza o processo original -> 0 teste condicional abaixo
+		 * garante que somento sera finalizado o processo original
+		 */
+		if (daemon_id > 0) {
+			cout << "Daemon criado! Saindo do processo principal" << endl;
+
+			exit(0);
+		}
+        //Configura sessão de execução do daemon
+		umask(0);
+
+		sid = setsid();
+		if (sid < 0) {
+			exit(1);
+		}
+        //DEsliga os recursos de entrada e saida de dados
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
+		close(STDERR_FILENO);
+	}
+
+	return resultado;
+}
+
+bool pipeIniciado() {
+	//Cria o arquivo de PIPE
+	//666 - permissão de leitura escrita no arquivo
+	int resultado = mkfifo(ARQUIVO_PIPE, 666);
+
+	return (resultado != -1);
+}
+
+int lerSensores() {
+	//Substituir pela leitura do sensores
+	sensores++;
+	read(hPorta, (int*)&sensores, sizeof(sensores));
+	usleep(100*1000);
+
+	return sensores;
+}
+
+int enviarParaPipe(int sensores) {
+	//abrir o PIPE (abrir o arquivo)
+	int bytes = 0;
+
+	int apipe = open(ARQUIVO_PIPE, O_RDWR);
+	if (apipe != -1) {
+		// converter sensores inteiro para string
+		// a integração funciona melhor com strings
+		stringstream ss;
+		ss << sensores;
+		string strSensores = ss.str();
+
+		//escrever a string de sensores no PIPE
+		bytes = write(apipe, strSensores.c_str(), strSensores.length());
+	}
+	//fechar o PIPE
+	close(apipe);
+
+	return bytes;
+}
+
+void tratarSinal(int sinal) {
+	//tratamento para os sinais de parada do deamon (o deamon deve parar)
+	switch (sinal) {
+	case SIGHUP:
+		continuar = false;
+		break;
+	case SIGTERM:
+		continuar = false;
+		break;
+	case SIGQUIT:
+		continuar = false;
+		break;
+	default:
+		break;
+	}
+}
+
+void iniciarTratamentoSinais() {
+	//MApeamento entre sinal e função de tratamento de sinais
+	signal(SIGHUP, tratarSinal);
+	signal(SIGTERM, tratarSinal);
+	signal(SIGINT, tratarSinal);
+	signal(SIGQUIT, tratarSinal);
+}
+
+int main(int argc, char* argv[]) {
+	//se for preciso criar o deamon
+	if (daemonize() == EXIT_SUCCESS) {
+		//inicia-se o tratamento de sinais
+		iniciarTratamentoSinais();
+
+		//e o log para registro de operações
+		ofstream log(ARQUIVO_LOG, ios_base::out | ios_base::app);
+		log << "Arquivo de log iniciado!" << endl;
+
+		log << "Pipe sendo criando..." << endl;
+		if (!pipeIniciado()) {
+			log << "Falha de inicializacao do PIPE" << endl;
+
+			exit(1);
+		}
+
+		//executa em um loop interrompível
+		continuar = true;
+		//... a leitura dos sensores
+		while (continuar) {
+			int sensores = lerSensores();
+
+			log << "Enviando sensores: " << sensores << endl;
+
+			//.. e o envia para o PIPE
+			enviarParaPipe(sensores);
+
+			sleep(1);
+		}
+
+		//remove o arquivo de PIPE após o uso/finalizado
+		unlink(ARQUIVO_PIPE);
+
+		log << "Daemon de sensoriamento finalizado!" << endl;
+	}
+
+	return 0;
+}

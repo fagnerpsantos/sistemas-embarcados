@@ -1,0 +1,24 @@
+14:12:52 **** Build of configuration Release for project sensoriamentod ****
+make all 
+Building file: ../src/Comunicacao.cpp
+Invoking: GCC C++ Compiler
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Comunicacao.d" -MT"src/Comunicacao.d" -o "src/Comunicacao.o" "../src/Comunicacao.cpp"
+Finished building: ../src/Comunicacao.cpp
+ 
+Building file: ../src/daemon.cpp
+Invoking: GCC C++ Compiler
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/daemon.d" -MT"src/daemon.d" -o "src/daemon.o" "../src/daemon.cpp"
+../src/daemon.cpp: In function ‘int main(int, char**)’:
+../src/daemon.cpp:145:36: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+   com =  Comunicacao("/dev/ttyUSB0");
+                                    ^
+Finished building: ../src/daemon.cpp
+ 
+Building target: sensoriamentod
+Invoking: GCC C++ Linker
+g++  -o "sensoriamentod"  ./src/Comunicacao.o ./src/daemon.o   
+Finished building target: sensoriamentod
+ 
+
+14:12:52 Build Finished (took 459ms)
+

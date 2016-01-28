@@ -1,78 +1,21 @@
-12:28:34 **** Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-
-12:28:34 Build Finished (took 78ms)
-
-12:28:34 **** Clean-only build of configuration Release for project comunicacaorf ****
-make clean 
-rm -rf  ./src/Comunicacao.o ./src/Extern.o  ./src/Comunicacao.d ./src/Extern.d  comunicacaorf.so
- 
-12:28:34 **** Build of configuration Release for project comunicacaorf ****
+14:12:52 **** Build of configuration Release for project sensoriamentod ****
 make all 
 Building file: ../src/Comunicacao.cpp
 Invoking: GCC C++ Compiler
-g++ -I"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp/comunicacaorf/include" -O3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"src/Comunicacao.d" -MT"src/Comunicacao.d" -o "src/Comunicacao.o" "../src/Comunicacao.cpp"
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Comunicacao.d" -MT"src/Comunicacao.d" -o "src/Comunicacao.o" "../src/Comunicacao.cpp"
 Finished building: ../src/Comunicacao.cpp
  
-Building file: ../src/Extern.cpp
+Building file: ../src/daemon.cpp
 Invoking: GCC C++ Compiler
-g++ -I"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp/comunicacaorf/include" -O3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"src/Extern.d" -MT"src/Extern.d" -o "src/Extern.o" "../src/Extern.cpp"
-Finished building: ../src/Extern.cpp
+g++ -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/daemon.d" -MT"src/daemon.d" -o "src/daemon.o" "../src/daemon.cpp"
+../src/daemon.cpp: In function ‘int main(int, char**)’:
+../src/daemon.cpp:145:36: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+   com =  Comunicacao("/dev/ttyUSB0");
+                                    ^
+Finished building: ../src/daemon.cpp
  
-Building target: comunicacaorf.so
+Building target: sensoriamentod
 Invoking: GCC C++ Linker
-g++ -shared -o "comunicacaorf.so"  ./src/Comunicacao.o ./src/Extern.o   
-Finished building target: comunicacaorf.so
+g++  -o "sensoriamentod"  ./src/Comunicacao.o ./src/daemon.o   
+Finished building target: sensoriamentod
  
-15:39:04 **** Clean-only build of configuration Debug for project comunicacaorf ****
-make clean 
-rm -rf  ./src/Comunicacao.o ./src/Executor.o ./src/Extern.o  ./src/Comunicacao.d ./src/Executor.d ./src/Extern.d  comunicacaorf
- 
-15:39:04 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-Building file: ../src/Comunicacao.cpp
-Invoking: GCC C++ Compiler
-g++ -I"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Comunicacao.d" -MT"src/Comunicacao.d" -o "src/Comunicacao.o" "../src/Comunicacao.cpp"
-Finished building: ../src/Comunicacao.cpp
- 
-Building file: ../src/Executor.cpp
-Invoking: GCC C++ Compiler
-g++ -I"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Executor.d" -MT"src/Executor.d" -o "src/Executor.o" "../src/Executor.cpp"
-../src/Executor.cpp: In function ‘int main(int, char**)’:
-../src/Executor.cpp:21:32: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
-  Comunicacao com("/dev/ttyUSB0");
-                                ^
-Finished building: ../src/Executor.cpp
- 
-Building file: ../src/Extern.cpp
-Invoking: GCC C++ Compiler
-g++ -I"/home/fagnerpsantos/Developer/Arduino/sistemas-embarcados/umidade/cpp/comunicacaorf/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Extern.d" -MT"src/Extern.d" -o "src/Extern.o" "../src/Extern.cpp"
-Finished building: ../src/Extern.cpp
- 
-Building target: comunicacaorf
-Invoking: GCC C++ Linker
-g++  -o "comunicacaorf"  ./src/Comunicacao.o ./src/Executor.o ./src/Extern.o   
-Finished building target: comunicacaorf
- 
-15:41:58 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-15:44:17 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-15:44:39 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-15:45:18 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-18:02:49 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-18:03:36 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
-18:04:39 **** Incremental Build of configuration Debug for project comunicacaorf ****
-make all 
-make: Nada a ser feito para `all'.
